@@ -41,7 +41,7 @@ class App extends React.Component {
 
   registerUser = response => {
     this.setState({ userDetails: response.profileObj, isUserLoggedIn: true, feedbackSubmitted: false });
-    fetch('http://localhost:5000/login', {
+    fetch('http://ec2-3-16-164-208.us-east-2.compute.amazonaws.com:5000/login', {
         method: 'POST',
         headers: {
             Accept: 'application/json',
@@ -81,7 +81,7 @@ class App extends React.Component {
   }
 
   submitFeedback = () => {
-    fetch('http://localhost:5000/submit-feedback', {
+    fetch('http://ec2-3-16-164-208.us-east-2.compute.amazonaws.com:5000/submit-feedback', {
         method: 'POST',
         headers: {
             Accept: 'application/json',
@@ -95,10 +95,10 @@ class App extends React.Component {
             rating5: this.state.rating5,
             uid: this.state.uid
         })
-    })
-  	this.setState({feedbackSubmitted: true})
-
-    fetch('http://localhost:5000/fetch-summary', {
+    }).then((response) => response.json())
+      .then((responseJson) => console.log(responseJson))
+      .then(
+    fetch('http://ec2-3-16-164-208.us-east-2.compute.amazonaws.com:5000/fetch-summary', {
         method: 'GET',
         headers: {
             Accept: 'application/json',
@@ -113,9 +113,10 @@ class App extends React.Component {
             rating2: responseJson.r2,
             rating3: responseJson.r3,
             rating4: responseJson.r4,
-            rating5: responseJson.r5
+            rating5: responseJson.r5,
+            feedbackSubmitted: true
         })
-      })
+      }))
   }
 
 

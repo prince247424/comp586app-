@@ -29,7 +29,8 @@ def login():
         response = jsonify({'user_id' : uid, 'response': 200})
     else:
         response = jsonify(RESPONSE_INTERNAL_ERROR)
-    response.headers.add('Access-Control-Allow-Origin', 'http://localhost:3000')
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    response.headers.add('Access-Control-Allow-Headers', '*')    
     return response
 
 
@@ -41,15 +42,15 @@ def submitFeedback():
         response = jsonify(RESPONSE_SUCCESS)
     else:
         response = jsonify(RESPONSE_INTERNAL_ERROR)
-    response.headers.add('Access-Control-Allow-Origin', 'http://localhost:3000')
+    response.headers.add('Access-Control-Allow-Origin', '*')
     return response
 
 
 @app.route('/fetch-summary', methods=['GET'])
 def fetchSummary():
-	return controller.get_average_ratings()
+    return controller.get_average_ratings()
 
 
 if __name__ == '__main__':
     create_app()
-    app.run(debug=True)
+    app.run(host='0.0.0.0', debug=True)

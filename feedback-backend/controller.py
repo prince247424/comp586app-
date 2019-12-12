@@ -76,7 +76,7 @@ def get_average_ratings():
             n_r3+=1
             sum_r3+=row.rating3
         if row.rating4:
-            n_r4=1
+            n_r4+=1
             sum_r4+=row.rating4
         if row.rating5:
             n_r5+=1
