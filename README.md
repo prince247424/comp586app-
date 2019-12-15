@@ -1,5 +1,35 @@
 # comp586app-
 
+Database schema
+
+We have 2 tables in the database:
+1. User
+2. Rating
+
+User table - user id, user email and name 
+Rating table - id, user id, rating1, rating2, rating3, rating4, rating5
+
+1 user can submit multiple ratings and hence we have a 1 to may mapping here.
+
+
+ORM
+SQLAlchemy does the mapping for us between the database and the object. SQLAlchemy is the wrapper around the database operations and as the class is derived from the db.model class, it maps the objects to the right database field. 
+
+
+On the view side, our Frontend and Backend has no understanding between the two, we need to explicitly send the data between the two. Data is sent and received as JSON with the appropriate key value pair.
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 frontend commands
